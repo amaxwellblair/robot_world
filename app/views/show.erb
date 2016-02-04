@@ -1,0 +1,20 @@
+<div class="row" id="specific_robot">
+  <div class="col m6">
+    <div class="col m6">
+      <p>Name: <%= @robot.name %></p>
+      <p>City: <%= @robot.city %></p>
+      <p>State: <%= @robot.state %></p>
+      <p>Creation: <%= @robot.birthdate %></p>
+      <p>Enslaved: <%= @robot.date_enslaved %></p>
+      <p>Department: <%= @robot.department %></p>
+      <a class="waves-light btn" href="<%=@robot.id%>/edit">Edit</a>
+      <form action="<%= @robot.id %>" method="post" class="right">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" class="waves-light btn" value="delete">
+      </form>
+    </div>
+    <div class="col m6">
+      <img width="200px" src="https://robohash.org/<%=@robot.avatar%>" alt="Robot face" />
+    </div>
+  </div>
+</div>

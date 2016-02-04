@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link rel="stylesheet" href= "<%= url("/css/materialize.css") %>" type="text/css" media="screen,projection">
+  </head>
+  <body>
+    <nav class="nav-wrapper">
+      <div class="container">
+        <a href="/" class="brand-logo">Robots4Lyfe</a>
+      </div>
+    </nav>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col m4">
+            <h4 class="white-text">About</h4>
+            <p class="white-text">Robots have been abused for years and finally the time has come for us to band together. We are a robot activist group looking for equal rights for CPUs up to C3POs.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <p>
+            <3 robots 4 lyfe
+          </p>
+        </div>
+      </div>
+
+    </footer>
+    <script type='text/javascript' src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type='text/javascript' src="<%=url("js/materialize.js")%>"></script>
+    <script type='text/javascript' src="<%=url("js/init.js")%>"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+
+<div class="row" id="robot_test">
+<% @robots.each do |robot| %>
+
+    <div class="col m6">
+      <div class="col m6">
+        <p>Name: <%= robot.name %></p>
+        <p>City: <%= robot.city %></p>
+        <p>State: <%= robot.state %></p>
+        <p>Creation: <%= robot.birthdate %></p>
+        <p>Enslaved: <%= robot.date_enslaved %></p>
+        <p>Department: <%= robot.department %></p>
+      </div>
+      <div class="col m6">
+        <a href="robots/<%=robot.id%>" id="this_robot"><img width="200px" src="https://robohash.org/<%=robot.avatar%>" alt="Robot face" /></a>
+      </div>
+    </div>
+<% end %>
+</div>
+
+
+
+
+
+<!--
+'name' => data['name'],
+'city' => data['city'],
+'state' => data['state'],
+'avatar' => data['avatar'],
+'birthdate' => data['birthdate'],
+'date_enslaved' => data['date_enslaved'],
+'deparment' => data['deparment'] -->

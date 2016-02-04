@@ -1,0 +1,35 @@
+
+<div class="row">
+  <div class="col m6">
+    <form action="edit" method="post">
+      <input type="hidden" name="_method" value="put">
+      <h5>Name  :</h5>
+      <input type="text" name="robot[name]" value="<%=@robot.name%>">
+      <h5>City:</h5>
+      <input type="text" name="robot[city]" value="<%=@robot.city%>">
+      <h5>State:</h5>
+      <select class="" name="robot[state]">
+        <option value="robotopia" <%if @robot.state == "robotopia"%> selected <% end %>>Robotopia</option>
+        <option value="bucketston" <% if @robot.state == "bucketston"%> selected <% end %>>Bucketston</option>
+        <option value="gearopolis" <% if @robot.state == "gearopolis"%> selected <% end %>>Gearopolis</option>
+      </select>
+      <h5>Avatar:</h5>
+      <select class="" name="robot[avatar]">
+        <option value="chomps" <% if @robot.avatar == "chomps" %> selected <% end %>>Chompies</option>
+        <option value="bender" <% if @robot.avatar == "bender" %> selected <% end %>>Bender</option>
+        <option value="robot_chicken" <% if @robot.avatar == "robot_chicken" %> selected <% end %>>Robo-Chicken</option>
+      </select>
+      <h5>Creation date:</h5>
+      <input type="date" class="datepicker" name="robot[birthdate]" value= "<%= @robot.birthdate %>">
+      <h5>Enslavement date:</h5>
+      <input type="date" class="datepicker" name="robot[date_enslaved]" value="<%= @robot.date_enslaved %>">
+      <h5>Department:</h5>
+      <select class="" name="robot[department]">
+        <option value="bending" <% if @robot.department == "bending" %> selected <% end %>>Bending</option>
+        <option value="construction" <% if @robot.department == "construction" %> selected <% end %>>Construction</option>
+        <option value="army" <% if @robot.department == "army" %> selected <% end %>>Army</option>
+      </select>
+      <input type="submit" class="waves-light btn" value="Submit">
+    </form>
+  </div>
+</div>

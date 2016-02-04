@@ -1,0 +1,27 @@
+---
+total: 7
+robots:
+- id: 2
+  name: Jerry Slug
+  city: Townsville
+  state: bucketston
+  avatar: robot_chicken
+  birthdate: 29 August, 2010
+  date_enslaved: 14 June, 2030
+  department: army
+- id: 6
+  name: Chickpea
+  city: Hummus Town
+  state: robotopia
+  avatar: chomps
+  birthdate: 1 January, 2000
+  date_enslaved: 1 January, 2030
+  department: bending
+- id: 7
+  name: Meg Ryan
+  city: Quahog
+  state: robotopia
+  avatar: robot_chicken
+  birthdate: 1 January, 2000
+  date_enslaved: 1 January, 2030
+  department: army
