@@ -7,22 +7,26 @@ class RobotRepository
 
   def create(data)
     database.transaction do
-      database['total'] ||= 0
-      database['total'] += 1
-      database['robots'] ||= []
-      database['robots'].push(
-        {
-          'id' => database['total'],
-          'name' => data[:name],
-          'city' => data[:city],
-          'state' => data[:state],
-          'avatar' => data[:avatar],
-          'birthdate' => data[:birthdate],
-          'date_enslaved' => data[:date_enslaved],
-          'department' => data[:department]
-        }
-      )
+      database.from(:robots).insert(data)
     end
+
+    # database.transaction do
+    #   database['total'] ||= 0
+    #   database['total'] += 1
+    #   database['robots'] ||= []
+    #   database['robots'].push(
+    #     {
+    #       'id' => database['total'],
+    #       'name' => data[:name],
+    #       'city' => data[:city],
+    #       'state' => data[:state],
+    #       'avatar' => data[:avatar],
+    #       'birthdate' => data[:birthdate],
+    #       'date_enslaved' => data[:date_enslaved],
+    #       'department' => data[:department]
+    #     }
+    #   )
+    # end
   end
 
   def raw_robots
@@ -32,7 +36,11 @@ class RobotRepository
   end
 
   def all
-    raw_robots.map{ |robot| create_robot(robot) }
+    database.transaction do
+      database.from(:robots).to_a.map do |raw_robot|
+        create_robot(raw_robot)
+      end
+    end
   end
 
   def raw_robot(id)
@@ -72,9 +80,9 @@ class RobotRepository
   end
 
   def create_robot(data)
-    Struct::Robot.new(data['id'], data['name'], data['city'], data['state'],
-                      data['avatar'], data['birthdate'], data['date_enslaved'],
-                      data['department'])
+    Struct::Robot.new(data[:id], data[:name], data[:city], data[:state],
+                      data[:avatar], data[:birthdate], data[:date_enslaved],
+                      data[:department])
   end
 
   Struct.new("Robot", :id, :name, :city, :state, :avatar, :birthdate, :date_enslaved, :department)

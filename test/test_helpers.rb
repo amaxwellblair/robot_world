@@ -10,11 +10,17 @@ require 'yaml/store'
 require 'tilt/erb'
 
   Capybara.app = RobotWorldApp
+  DatabaseCleaner[:sequel, {:connection => Sequel.sqlite("db/robot_repository_test.sqlite3")}].strategy = :truncation
 
 module TestHelpers
 
+  def setup
+    DatabaseCleaner.start
+    super
+  end
+
   def teardown
-    robot_repository.delete_all
+    DatabaseCleaner.clean
     super
   end
 
@@ -32,7 +38,7 @@ module TestHelpers
   end
 
   def robot_repository
-    database = YAML::Store.new("db/robot_repository_test")
+    database = Sequel.sqlite("db/robot_repository_test.sqlite3")
     @robo_repo ||= RobotRepository.new(database)
   end
 

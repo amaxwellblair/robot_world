@@ -59,8 +59,8 @@ end
 
 def robot_repo
   if ENV['RACK_ENV'] == 'test'
-    @robot_repo ||= RobotRepository.new(YAML::Store.new("db/robot_repository_test"))
+    @robot_repo ||= RobotRepository.new(Sequel.sqlite("db/robot_repository_test"))
   else
-    @robot_repo ||= RobotRepository.new(YAML::Store.new("db/robot_repository"))
+    @robot_repo ||= RobotRepository.new(Sequel.sqlite("db/robot_repository_dev"))
   end
 end
