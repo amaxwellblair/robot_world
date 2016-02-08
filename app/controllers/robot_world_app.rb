@@ -1,10 +1,8 @@
-require 'sinatra/base'
-require 'yaml/store'
+# require File.expand_path('../../../config/environment', __FILE__)
+require 'sequel'
 
 
 class RobotWorldApp < Sinatra::Base
-  set :root, File.expand_path("..", __dir__)
-  set :method_override, true
 
   get "/" do
     erb :template, :layouts => false do
@@ -59,8 +57,8 @@ end
 
 def robot_repo
   if ENV['RACK_ENV'] == 'test'
-    @robot_repo ||= RobotRepository.new(Sequel.sqlite("db/robot_repository_test"))
+    @robot_repo ||= RobotRepository.new(Sequel.sqlite("db/robot_world_test.sqlite3"))
   else
-    @robot_repo ||= RobotRepository.new(Sequel.sqlite("db/robot_repository_dev"))
+    @robot_repo ||= RobotRepository.new(Sequel.sqlite("db/robot_world_dev.sqlite3"))
   end
 end

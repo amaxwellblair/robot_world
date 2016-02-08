@@ -12,7 +12,7 @@ class UserDeletesRobotTest < Minitest::Test
     click_button("delete")
 
     within("#robot_test") do
-      refute page.has_content?("Rockie")
+      refute page.has_content?("Rockie0")
     end
 
     #unathenticated user walks into a bar...

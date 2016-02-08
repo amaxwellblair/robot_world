@@ -9,30 +9,6 @@ class RobotRepository
     database.transaction do
       database.from(:robots).insert(data)
     end
-
-    # database.transaction do
-    #   database['total'] ||= 0
-    #   database['total'] += 1
-    #   database['robots'] ||= []
-    #   database['robots'].push(
-    #     {
-    #       'id' => database['total'],
-    #       'name' => data[:name],
-    #       'city' => data[:city],
-    #       'state' => data[:state],
-    #       'avatar' => data[:avatar],
-    #       'birthdate' => data[:birthdate],
-    #       'date_enslaved' => data[:date_enslaved],
-    #       'department' => data[:department]
-    #     }
-    #   )
-    # end
-  end
-
-  def raw_robots
-    database.transaction do
-      database['robots'] || []
-    end
   end
 
   def all
@@ -43,39 +19,19 @@ class RobotRepository
     end
   end
 
-  def raw_robot(id)
-    database.transaction do
-      database['robots'].find{ |robot| robot['id'] == id }
-    end
-  end
-
   def find(id)
-    create_robot(raw_robot(id))
+    database.transaction do
+      create_robot(database.from(:robots).where(:id => id).to_a.first)
+    end
   end
 
   def update(id, data)
-    database.transaction do
-      raw_robot = database['robots'].find{ |raw_robot| raw_robot['id'] == id }
-      raw_robot['name'] = data[:name]
-      raw_robot['city'] = data[:city]
-      raw_robot['state'] = data[:state]
-      raw_robot['avatar'] = data[:avatar]
-      raw_robot['birthdate'] = data[:birthdate]
-      raw_robot['date_enslaved'] = data[:date_enslaved]
-      raw_robot['department'] = data[:department]
-    end
+    database.from(:robots).where(:id => id).update(data)
   end
 
   def delete(id)
     database.transaction do
-      database['robots'].delete_if{ |robot| robot['id'] == id }
-    end
-  end
-
-  def delete_all
-    database.transaction do
-      database['total'] = 0
-      database['robots'] = []
+      database.from(:robots).where(:id => id).delete
     end
   end
 

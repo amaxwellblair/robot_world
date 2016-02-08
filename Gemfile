@@ -1,10 +1,13 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
+gem 'sinatra', require: 'sinatra/base'
 gem 'shotgun'
-gem 'sinatra'; require "sinatra/base"
-gem 'capybara'
+gem 'pry'
+gem 'pry-nav'
 gem 'minitest'
+gem 'capybara'
 gem 'launchy'
+gem 'rake'
 gem 'sequel'
 gem 'sqlite3'
 gem 'database_cleaner'
